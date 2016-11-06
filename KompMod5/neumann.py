@@ -9,11 +9,11 @@ def bounds(u, v):
     prob_a = 1    
 
     while prob_a > 0.01:
-        a = int(random.uniform(-10, 0))
+        a = int(random.uniform(-5, 0))
         prob_a, err = scipy.integrate.quad(n_d.pdf, -np.inf, a, args = (u, v))
 
     while prob_b > 0.01:
-        b = int(random.uniform(a+1, 10))
+        b = int(random.uniform(a+1, 5))
         prob_b, err = scipy.integrate.quad(n_d.pdf, b, np.inf, args = (u, v))
     
     return a, b

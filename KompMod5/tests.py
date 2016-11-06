@@ -86,7 +86,7 @@ def chisqr_test(sequence, alpha, v, u):
     
 
     def integrand(x, r):
-        return x ** (r / 2 - 1) * sc.exp(-x / 2)
+        return x ** (r / 2 - 1) * np.exp(-x / 2)
 
     prob_s = sc.integrate.quad(integrand, s_star, np.inf, args = (r))
     prob_s = prob_s[0] / (2 ** (r / 2) * sc.special.gamma(r / 2))

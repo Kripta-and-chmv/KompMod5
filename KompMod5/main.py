@@ -22,7 +22,7 @@ def main():
 
     u, v, alpha = get_arguments()
     
-    seq = [neumann.generate(u, v) for x in range(1000)]
+    seq = [neumann.generate(u, v) for x in range(100)]
     tests.smirnov(seq, v, u, alpha)
     tests.chisqr_test(seq, alpha, v, u)
 
