@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 def smirnov(seq, u, v, alpha):
     def calc_d_plus(seq, u, v):
+        """Вычисление D+"""
         d = []
         lng = len(seq)
         for i, x in zip(range(1, lng+1), seq):
@@ -13,7 +14,8 @@ def smirnov(seq, u, v, alpha):
             d.append(el)
         return max(d)
 
-    def calc_d_minus(seq, v, u):
+    def calc_d_minus(seq, u, v):
+        """Вычисление D-"""
         d = []
         lng = len(seq)
         for i, x in zip(range(1, lng+1), seq):
@@ -21,13 +23,15 @@ def smirnov(seq, u, v, alpha):
             d.append(el)
         return max(d)
 
-    def calc_dn(seq, v, u):
-        d_min = calc_d_minus(seq, v, u)
-        d_plus = calc_d_plus(seq, v, u)
+    def calc_dn(seq, u, v):
+        """Вычисление Dn"""
+        d_min = calc_d_minus(seq, u, v)
+        d_plus = calc_d_plus(seq, u, v)
         return max(d_min, d_plus)
 
-    def calc_s_star(seq, v, u):
-        dn = calc_dn(seq, v, u)
+    def calc_s_star(seq, u, v):
+        """Вычисление S*"""
+        dn = calc_dn(seq, u, v)
         lng = len(seq)
         s_star = (6 * lng * dn + 1)**2 / (9 * lng)
         return s_star
@@ -39,7 +43,7 @@ def smirnov(seq, u, v, alpha):
 
     seq.sort()
     
-    s_star = calc_s_star(seq, v, u)
+    s_star = calc_s_star(seq, u, v)
     print("\tЗначение статистики - {}".format(s_star))
 
     prob_s = calc_prob_s_grtr_sstr(s_star)
@@ -76,7 +80,8 @@ def chisqr_test(sequence, alpha, u, v):
         return [norm_d.cdf(x, u, v) - norm_d.cdf(y, u, v) for x, y in zip(intervals[1:], intervals[:-1])]
 
     probabils = calc_probs(intervals)
-
+    kk = sum(probabils)
+    kkk = sum(emper_prob)
     def graph(intervals, probabils, emper_prob, width):
         #width = intervals[len(intervals) - 1] / (len(intervals) - 1)
         fig = plt.figure()
@@ -89,8 +94,6 @@ def chisqr_test(sequence, alpha, u, v):
         plt.ylabel('hits amount')
         plt.xticks(intervals)
         plt.show()
-
-
 
     graph(intervals, probabils, emper_prob, lngth)
     # вычисляется статистика
