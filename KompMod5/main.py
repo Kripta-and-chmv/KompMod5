@@ -15,14 +15,15 @@ def get_arguments():
         u, v, alpha = float(args[0]), float(args[1]), float(args[2])
         return u, v, alpha
 
-
-
 def main():
     sys.stdout = open("output.txt", "w+")
 
     u, v, alpha = get_arguments()
     
-    seq = [neumann.generate(u, v) for x in range(1000)]
+    amount = 1000
+    seq = [neumann.generate(u, v) for x in range(amount)]
+    #with open("normal_{}_{}_{}.txt".format(len(seq), u, v), "w") as f:
+    #    f.write(str(seq))
     tests.smirnov(seq, u, v, alpha)
     tests.chisqr_test(seq, alpha, u, v)
 

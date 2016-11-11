@@ -8,7 +8,7 @@ def bounds(u, v):
     
     a = int(scipy.stats.norm.ppf(0.01, u, v))
     b = int(scipy.stats.norm.ppf(0.99, u, v))
-    
+
     return a, b
 
 def generate(u, v):
