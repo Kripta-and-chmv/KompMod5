@@ -37,6 +37,7 @@
     <Content Include="arguments.txt">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="output.txt" />
   </ItemGroup>
   <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
   <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
